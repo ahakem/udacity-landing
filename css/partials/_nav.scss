@@ -2,7 +2,10 @@
   background: #566c17;
   padding:  0 16px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, .16);
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 102;
 }
 .topNav_link{
   color: rgba(255,255,255,.7);
@@ -20,13 +23,7 @@
   color: #fff;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 102;
-}
-.sticky + section{
+.sticky + .wraper{
   padding-top: 100px;
 }
 

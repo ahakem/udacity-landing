@@ -8,7 +8,10 @@ body {
   padding: 0 16px;
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
           box-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 102;
 }
 
 .topNav_link {
@@ -28,14 +31,7 @@ body {
   color: #fff;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 102;
-}
-
-.sticky + section {
+.sticky + .wraper {
   padding-top: 100px;
 }
 
