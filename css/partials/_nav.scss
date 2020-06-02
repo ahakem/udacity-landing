@@ -1,0 +1,44 @@
+.topNav{
+  background: #566c17;
+  padding:  0 16px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .16);
+  position: relative;
+}
+.topNav_link{
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  height: 48px;
+  line-height: 48px;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 12px;
+  padding: 0 8px;
+  text-transform: uppercase;
+  
+}
+.nav_activeLink{
+  color: #fff;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 102;
+}
+.sticky + section{
+  padding-top: 100px;
+}
+
+.navbar-indecator{
+  height: 3px;
+  background: #fff;
+  min-width: 20px;
+  position: absolute;
+  bottom: 0;
+  z-index: 101;
+  left: 0;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+}
+
