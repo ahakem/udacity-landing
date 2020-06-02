@@ -56,7 +56,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   background: #333;
-  min-height: 500px;
+  height: 100vh;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
