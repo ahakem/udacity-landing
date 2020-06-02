@@ -136,8 +136,7 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    line-height: 5;
-    letter-spacing: 10px;
+    line-height: 2;
   }
 }
 /*# sourceMappingURL=styles.css.map */

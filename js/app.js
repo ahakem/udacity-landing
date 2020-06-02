@@ -40,11 +40,13 @@ const goTo = (elm) => {
   let sectionContainer = document.getElementById(parentNavAttr);
   let targetSec = elm.getAttribute("data-Id");
   let oldActiveSection = sectionContainer.querySelector(
-    ".section-content.active"
+    ".section-content"
   );
 
   let activeSection = sectionContainer.querySelector("#" + targetSec);
-  oldActiveSection.classList.remove("active");
+  if (oldActiveSection.classList.contains("active")) {
+    oldActiveSection.classList.remove("active");
+  }
   activeSection.classList.add("active");
   scrollTo(activeSection);
 };
@@ -56,3 +58,29 @@ const scrollTo = (elm) => {
   });
 };
 setActiveLink();
+
+const targets = document.querySelectorAll(".section-content");
+
+// Next we want to create a function that will be called when that element is intersected
+function handleIntersection(entries) {
+  // The callback will return an array of entries, even if you are only observing a single item
+  entries.map((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+      let targetID = entry.target.id;
+      let targetNavElm = document.querySelectorAll(`[data-Id=${targetID}]`)
+      animate(targetNavElm[0])
+    } else {
+      entry.target.classList.remove("active");
+    }
+  });
+}
+
+// Next we instantiate the observer with the function we created above. This takes an optional configuration
+// object that we will use in the other examples.
+const observer = new IntersectionObserver(handleIntersection, {
+  threshold: 0.8,
+});
+
+// Finally start observing the target element
+targets.forEach((target) => observer.observe(target));
