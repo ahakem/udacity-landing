@@ -1,26 +1,46 @@
 const q = document.querySelector.bind(document);
 
-// Get the navbar
 const navbar = document.querySelectorAll("nav");
 const indecator = document.querySelectorAll(".js-navbar-indecator");
+const sections = document.querySelectorAll(".section-content");
+const stickyNav = document.querySelector(".js-stickyNav");
+let sectionsContent = [];
+let navLinks = "";
+// getting sections content
 
-// nav
-navbar.forEach(function (nav) {
-  nav.addEventListener("click", function (evt) {
-    if (evt.target.nodeName === "A") {
-      animate(evt.target);
-      goTo(evt.target);
+
+const PrepareDom = () => {
+  sections.forEach(function (sec) {
+    const obj = {
+      title: sec.querySelector(".section-content_heading h3").textContent,
+      id: sec.id
     }
+    sectionsContent.push(obj)
   });
-});
-// seating width and potsion for the active tab
-const setActiveLink = () => {
-  let activeLink = document.querySelectorAll(".nav_activeLink");
-  indecator.forEach(function (link, i) {
-    link.style.width = `${activeLink[i].scrollWidth}px`;
-    link.style.transform = `translateX(${activeLink[i].offsetLeft}px)`;
+  
+  sectionsContent.forEach(function (item) {
+    const link = `<a class="topNav_link" href="javascript:;" data-Id="${item.id}">${item.title}</a>`
+    navLinks += link 
+  });
+  stickyNav.innerHTML = navLinks + '<span class="navbar-indecator js-navbar-indecator"></span>';
+  navbar.forEach(function (nav) {
+    nav.addEventListener("click", function (evt) {
+      if (evt.target.nodeName === "A") {
+        // animate(evt.target);
+        goTo(evt.target);
+      }
+    });
   });
 };
+
+// seating width and potsion for the active tab
+// const setActiveLink = () => {
+//   let activeLink = document.querySelectorAll(".nav_activeLink");
+//   indecator.forEach(function (link, i) {
+//     link.style.width = `${activeLink[i].scrollWidth}px`;
+//     link.style.transform = `translateX(${activeLink[i].offsetLeft}px)`;
+//   });
+// };
 // animating the indecator after clicking on the tab and seeting the active tab link
 const animate = (elm) => {
   let linkWidth = elm.scrollWidth;
@@ -30,7 +50,10 @@ const animate = (elm) => {
   let childIndecator = parentNav.querySelector(".js-navbar-indecator");
   childIndecator.style.width = `${linkWidth}px`;
   childIndecator.style.transform = `translateX(${linkOffest}px)`;
-  oldActivetab.classList.remove("nav_activeLink");
+  if(oldActivetab != null){
+    oldActivetab.classList.remove("nav_activeLink");
+  }
+  
   elm.classList.add("nav_activeLink");
 };
 // Go To targeting Section
@@ -57,7 +80,7 @@ const scrollTo = (elm) => {
     behavior: "smooth",
   });
 };
-setActiveLink();
+
 
 const targets = document.querySelectorAll(".section-content");
 
@@ -84,3 +107,6 @@ const observer = new IntersectionObserver(handleIntersection, {
 
 // Finally start observing the target element
 targets.forEach((target) => observer.observe(target));
+
+PrepareDom();
+// setActiveLink();
