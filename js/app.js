@@ -102,7 +102,7 @@ function handleIntersection(entries) {
 // Next we instantiate the observer with the function we created above. This takes an optional configuration
 // object that we will use in the other examples.
 const observer = new IntersectionObserver(handleIntersection, {
-  threshold: 0.8,
+  threshold: 0.7,
 });
 
 // Finally start observing the target element
